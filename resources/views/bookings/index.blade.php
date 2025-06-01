@@ -83,7 +83,7 @@
                                                 <a href="{{ route('bookings.show', $booking) }}" class="text-cyan-600 hover:text-cyan-900">View</a>
 
                                                 @if ($booking->status == 'pending' || $booking->status == 'confirmed')
-                                                    @if (\Carbon\Carbon::parse($booking->date . ' ' . $booking->start_time)->subHours(24)->isFuture())
+                                                    @if (\Carbon\Carbon::parse($booking->date)->addTime(\Carbon\Carbon::parse($booking->start_time))->subHours(24)->isFuture())
                                                         <form method="POST" action="{{ route('bookings.cancel', $booking) }}" class="inline ml-3">
                                                             @csrf
                                                             @method('PUT')

@@ -22,14 +22,14 @@ class InstructorController extends Controller
             ->orderBy('start_time')
             ->take(5)
             ->get();
-        
+
         // Get statistics
         $totalBookings = Auth::user()->instructorBookings()->count();
         $pendingBookings = Auth::user()->instructorBookings()->where('status', 'pending')->count();
         $todayBookings = Auth::user()->instructorBookings()
             ->where('date', now()->format('Y-m-d'))
             ->count();
-        
+
         return view('instructor.dashboard', [
             'upcomingBookings' => $upcomingBookings,
             'totalBookings' => $totalBookings,
@@ -37,7 +37,7 @@ class InstructorController extends Controller
             'todayBookings' => $todayBookings
         ]);
     }
-    
+
     /**
      * Display the instructor's schedule.
      */
@@ -53,12 +53,12 @@ class InstructorController extends Controller
             ->orderBy('start_time')
             ->get()
             ->groupBy('date');
-        
+
         return view('instructor.schedule', [
             'bookings' => $bookings
         ]);
     }
-    
+
     /**
      * Display all bookings for this instructor.
      */
@@ -69,12 +69,12 @@ class InstructorController extends Controller
             ->orderBy('date', 'desc')
             ->orderBy('start_time')
             ->paginate(15);
-        
+
         return view('instructor.bookings.index', [
             'bookings' => $bookings
         ]);
     }
-    
+
     /**
      * Update the status of a booking (confirm/cancel).
      */
@@ -84,18 +84,18 @@ class InstructorController extends Controller
         if ($booking->instructor_id !== Auth::id()) {
             abort(403, 'You are not authorized to update this booking.');
         }
-        
+
         $validated = $request->validate([
-            'status' => 'required|in:confirmed,cancelled',
+            'status' => 'required|in:confirmed,cancelled,completed',
         ]);
-        
+
         $booking->update([
             'status' => $validated['status']
         ]);
-        
+
         // Send email notification to customer (in a real app)
         // Mail::to($booking->user->email)->send(new BookingStatusUpdated($booking));
-        
+
         return redirect()->route('instructor.bookings')
             ->with('success', 'Booking status has been updated to ' . $validated['status']);
     }

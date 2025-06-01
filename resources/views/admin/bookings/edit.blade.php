@@ -83,7 +83,7 @@
             <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
                 <div>
                     <label for="date" class="block text-gray-700 font-bold mb-2">Date</label>
-                    <input type="date" name="date" id="date" value="{{ old('date', $booking->date) }}"
+                    <input type="date" name="date" id="date" value="{{ old('date', \Carbon\Carbon::parse($booking->date)->format('Y-m-d')) }}"
                         class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring focus:ring-blue-200"
                         required>
                     @error('date')
