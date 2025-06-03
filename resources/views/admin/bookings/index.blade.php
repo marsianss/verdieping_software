@@ -18,7 +18,6 @@
             <table class="min-w-full bg-white border-collapse">
                 <thead>
                     <tr class="bg-gray-100 border-b border-gray-200">
-                        <th class="py-3 px-4 text-left font-semibold text-sm text-gray-700 uppercase tracking-wider">ID</th>
                         <th class="py-3 px-4 text-left font-semibold text-sm text-gray-700 uppercase tracking-wider">Customer</th>
                         <th class="py-3 px-4 text-left font-semibold text-sm text-gray-700 uppercase tracking-wider">Lesson</th>
                         <th class="py-3 px-4 text-left font-semibold text-sm text-gray-700 uppercase tracking-wider">Date</th>
@@ -32,7 +31,6 @@
                 <tbody class="divide-y divide-gray-200">
                     @foreach($bookings as $booking)
                     <tr class="hover:bg-gray-50 transition-colors duration-150">
-                        <td class="py-4 px-4 text-gray-800 font-medium">{{ $booking->id }}</td>
                         <td class="py-4 px-4 text-gray-800">{{ $booking->user->name }}</td>
                         <td class="py-4 px-4 text-gray-800">{{ $booking->lesson->name }}</td>
                         <td class="py-4 px-4 text-gray-800">{{ \Carbon\Carbon::parse($booking->date)->format('d-m-Y') }}</td>
@@ -54,13 +52,19 @@
                                 <a href="{{ route('admin.bookings.edit', $booking) }}" class="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded-md text-sm flex items-center">
                                     <i class="fas fa-edit mr-1"></i> Edit
                                 </a>
-                                <form action="{{ route('admin.bookings.destroy', $booking) }}" method="POST" class="inline" onsubmit="return confirm('Are you sure you want to delete this booking?');">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded-md text-sm flex items-center">
+                                @if($booking->status === 'cancelled')
+                                    <form action="{{ route('admin.bookings.destroy', $booking) }}" method="POST" class="inline" onsubmit="return confirm('Are you sure you want to delete this booking?');">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded-md text-sm flex items-center">
+                                            <i class="fas fa-trash mr-1"></i> Delete
+                                        </button>
+                                    </form>
+                                @else
+                                    <button disabled class="bg-gray-400 cursor-not-allowed text-white px-3 py-1 rounded-md text-sm flex items-center opacity-50" title="Can only delete cancelled bookings">
                                         <i class="fas fa-trash mr-1"></i> Delete
                                     </button>
-                                </form>
+                                @endif
                             </div>
                         </td>
                     </tr>

@@ -22,7 +22,7 @@
                     <h2 class="text-xl font-bold">All Lessons</h2>
                     <p class="text-blue-100 mt-1">Configure lesson types and pricing</p>
                 </div>
-                <a href="{{ route('admin.lessons.create') }}" 
+                <a href="{{ route('admin.lessons.create') }}"
                    class="bg-white text-blue-700 hover:bg-blue-50 px-6 py-3 rounded-lg shadow-md font-semibold flex items-center transition-all duration-200 transform hover:scale-105">
                     <i class="fas fa-plus mr-2"></i> Add New Lesson
                 </a>
@@ -34,9 +34,6 @@
             <table class="min-w-full bg-white">
                 <thead>
                     <tr class="bg-gradient-to-r from-gray-50 to-gray-100 border-b border-gray-200">
-                        <th class="py-4 px-6 text-left font-bold text-sm text-gray-700 uppercase tracking-wider">
-                            <i class="fas fa-hashtag mr-2 text-gray-500"></i>ID
-                        </th>
                         <th class="py-4 px-6 text-left font-bold text-sm text-gray-700 uppercase tracking-wider">
                             <i class="fas fa-water mr-2 text-gray-500"></i>Lesson Name
                         </th>
@@ -60,7 +57,6 @@
                 <tbody class="divide-y divide-gray-100">
                     @forelse($lessons as $lesson)
                     <tr class="hover:bg-blue-50 transition-all duration-200 hover:shadow-sm">
-                        <td class="py-5 px-6 text-gray-800 font-bold text-lg">#{{ str_pad($lesson->id, 3, '0', STR_PAD_LEFT) }}</td>
                         <td class="py-5 px-6">
                             <div class="flex items-center">
                                 <div class="h-10 w-10 rounded-full bg-gradient-to-r from-cyan-500 to-blue-500 flex items-center justify-center text-white font-bold mr-4">
@@ -113,16 +109,16 @@
                         </td>
                         <td class="py-5 px-6">
                             <div class="flex space-x-3">
-                                <a href="{{ route('admin.lessons.edit', $lesson) }}" 
+                                <a href="{{ route('admin.lessons.edit', $lesson) }}"
                                    class="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-200 shadow-md hover:shadow-lg transform hover:scale-105">
                                     <i class="fas fa-edit mr-2"></i>
                                     Edit
                                 </a>
-                                <form action="{{ route('admin.lessons.destroy', $lesson) }}" method="POST" class="inline" 
+                                <form action="{{ route('admin.lessons.destroy', $lesson) }}" method="POST" class="inline"
                                       onsubmit="return confirm('Are you sure you want to delete this lesson? This action cannot be undone.');">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" 
+                                    <button type="submit"
                                             class="inline-flex items-center px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors duration-200 shadow-md hover:shadow-lg transform hover:scale-105">
                                         <i class="fas fa-trash mr-2"></i>
                                         Delete
@@ -170,7 +166,7 @@
             padding: 0;
             gap: 0.5rem;
         }
-        
+
         .pagination-wrapper .page-item .page-link {
             display: inline-flex;
             align-items: center;
@@ -185,7 +181,7 @@
             transition: all 0.2s;
             font-weight: 500;
         }
-        
+
         .pagination-wrapper .page-item .page-link:hover {
             background-color: #3b82f6;
             color: white;
@@ -193,14 +189,14 @@
             transform: translateY(-1px);
             box-shadow: 0 4px 8px rgba(59, 130, 246, 0.3);
         }
-        
+
         .pagination-wrapper .page-item.active .page-link {
             background-color: #1d4ed8;
             color: white;
             border-color: #1d4ed8;
             box-shadow: 0 2px 4px rgba(29, 78, 216, 0.3);
         }
-        
+
         .pagination-wrapper .page-item.disabled .page-link {
             color: #9ca3af;
             background-color: #f3f4f6;

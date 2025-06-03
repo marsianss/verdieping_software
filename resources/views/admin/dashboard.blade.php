@@ -131,7 +131,6 @@
             <table class="min-w-full">
                 <thead class="bg-gray-50 border-b border-gray-200">
                     <tr>
-                        <th class="py-3 px-6 text-left font-semibold text-sm text-gray-700 uppercase tracking-wider">ID</th>
                         <th class="py-3 px-6 text-left font-semibold text-sm text-gray-700 uppercase tracking-wider">Customer</th>
                         <th class="py-3 px-6 text-left font-semibold text-sm text-gray-700 uppercase tracking-wider">Lesson</th>
                         <th class="py-3 px-6 text-left font-semibold text-sm text-gray-700 uppercase tracking-wider">Date & Time</th>
@@ -144,7 +143,6 @@
                 <tbody class="divide-y divide-gray-200">
                     @foreach($recentBookings as $booking)
                     <tr class="hover:bg-gray-50 transition-colors duration-150">
-                        <td class="py-4 px-6 text-gray-800 font-medium">#{{ $booking->id }}</td>
                         <td class="py-4 px-6 text-gray-800">{{ $booking->user->name }}</td>
                         <td class="py-4 px-6 text-gray-800">{{ $booking->lesson->name }}</td>
                         <td class="py-4 px-6 text-gray-800">

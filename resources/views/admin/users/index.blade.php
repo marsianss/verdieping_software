@@ -35,9 +35,6 @@
                 <thead>
                     <tr class="bg-gradient-to-r from-gray-50 to-gray-100 border-b border-gray-200">
                         <th class="py-4 px-6 text-left font-bold text-sm text-gray-700 uppercase tracking-wider">
-                            <i class="fas fa-hashtag mr-2 text-gray-500"></i>ID
-                        </th>
-                        <th class="py-4 px-6 text-left font-bold text-sm text-gray-700 uppercase tracking-wider">
                             <i class="fas fa-user mr-2 text-gray-500"></i>Name
                         </th>
                         <th class="py-4 px-6 text-left font-bold text-sm text-gray-700 uppercase tracking-wider">
@@ -60,7 +57,6 @@
                 <tbody class="divide-y divide-gray-100">
                     @forelse($users as $user)
                     <tr class="hover:bg-blue-50 transition-all duration-200 hover:shadow-sm">
-                        <td class="py-5 px-6 text-gray-800 font-bold text-lg">#{{ str_pad($user->id, 3, '0', STR_PAD_LEFT) }}</td>
                         <td class="py-5 px-6">
                             <div class="flex items-center">
                                 <div class="h-10 w-10 rounded-full bg-gradient-to-r from-blue-500 to-indigo-500 flex items-center justify-center text-white font-bold mr-4">
